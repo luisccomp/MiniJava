@@ -1,0 +1,4 @@
+sintatico.automaton
+sintatico.conflicts
+*.byte
+_build/
