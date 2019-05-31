@@ -1,0 +1,9 @@
+Para executar faça:
+
+Para gerar o arquivo com as mensagens de erro
+menhir -v --list-errors sintatico.mly > sintatico.messages
+menhir -v --list-errors sintatico.mly --compile-errors sintatico.messages >
+fnmes.ml
+
+Para gerar o compilador
+ocamlbuild -use-ocamlfind -use-menhir -menhir "menhir --table" -package menhirLib semanticoTest.byte

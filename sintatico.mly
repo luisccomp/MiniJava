@@ -3,70 +3,71 @@
 %{
   (* Módulo contendo as definições dos nós da árvore sintática abstrata. *)
   open Ast
+  open Lexing
 %}
 
 (* Tokens lexicais da mini linguagem *)
-%token APAR
-%token FPAR
-%token ACOL
-%token FCOL
-%token ATRIB
-%token IF
-%token WHILE
-%token MAIS
-%token PUBLIC
-%token CLASS
-%token STATIC
-%token VOID
-%token ACHAVE
-%token FCHAVE
-%token INT
-%token PTV
-%token PTO
-%token MENOS
-%token ELSE
-%token IGUAL
-%token DIFER
-%token MAIOR
-%token MENOR
-%token MAIORIGUAL
-%token MENORIGUAL
-%token ELOG
-%token OULOG
-%token NOT
-%token STRING
-%token <float> LITFLOAT
-%token VEZES
-%token DIV
-%token VIRG
-%token FLOAT
-%token READFLOAT
-%token READINT
-%token READCHAR
-%token READSTRING
-%token MAISMAIS
-%token MENOSMENOS
-%token DPTOS
-%token SWITCH
-%token DEFAULT
-%token CASE
-%token BREAK
-%token CHAR
-%token FOR
-%token MAISIGUAL
-%token MENOSIGUAL
-%token VEZESIGUAL
-%token BOOLEAN
-%token DIVIGUAL
-%token ARGV
-%token MOD
-%token RETURN
-%token <bool> LITBOOL
-%token <int> LITINT
-%token <string> LITSTRING
-%token <char> LITCHAR
-%token <string> ID
-%token PRINT
+%token <Lexing.position> APAR
+%token <Lexing.position> FPAR
+%token <Lexing.position> ACOL
+%token <Lexing.position> FCOL
+%token <Lexing.position> ATRIB
+%token <Lexing.position> IF
+%token <Lexing.position> WHILE
+%token <Lexing.position> MAIS
+%token <Lexing.position> PUBLIC
+%token <Lexing.position> CLASS
+%token <Lexing.position> STATIC
+%token <Lexing.position> VOID
+%token <Lexing.position> ACHAVE
+%token <Lexing.position> FCHAVE
+%token <Lexing.position> INT
+%token <Lexing.position> PTV
+%token <Lexing.position> PTO
+%token <Lexing.position> MENOS
+%token <Lexing.position> ELSE
+%token <Lexing.position> IGUAL
+%token <Lexing.position> DIFER
+%token <Lexing.position> MAIOR
+%token <Lexing.position> MENOR
+%token <Lexing.position> MAIORIGUAL
+%token <Lexing.position> MENORIGUAL
+%token <Lexing.position> ELOG
+%token <Lexing.position> OULOG
+%token <Lexing.position> NOT
+%token <Lexing.position> STRING
+%token <float * Lexing.position> LITFLOAT
+%token <Lexing.position> VEZES
+%token <Lexing.position> DIV
+%token <Lexing.position> VIRG
+%token <Lexing.position> FLOAT
+%token <Lexing.position> READFLOAT
+%token <Lexing.position> READINT
+%token <Lexing.position> READCHAR
+%token <Lexing.position> READSTRING
+%token <Lexing.position> MAISMAIS
+%token <Lexing.position> MENOSMENOS
+%token <Lexing.position> DPTOS
+%token <Lexing.position> SWITCH
+%token <Lexing.position> DEFAULT
+%token <Lexing.position> CASE
+%token <Lexing.position> BREAK
+%token <Lexing.position> CHAR
+%token <Lexing.position> FOR
+%token <Lexing.position> MAISIGUAL
+%token <Lexing.position> MENOSIGUAL
+%token <Lexing.position> VEZESIGUAL
+%token <Lexing.position> BOOLEAN
+%token <Lexing.position> DIVIGUAL
+%token <Lexing.position> ARGV
+%token <Lexing.position> MOD
+%token <Lexing.position> RETURN
+%token <bool * Lexing.position> LITBOOL
+%token <int * Lexing.position> LITINT
+%token <string * Lexing.position> LITSTRING
+%token <char * Lexing.position> LITCHAR
+%token <string * Lexing.position> ID
+%token <Lexing.position> PRINT
 %token EOF
 
 (* Precedência de tokens *)

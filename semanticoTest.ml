@@ -7,6 +7,8 @@ exception Erro_Sintatico of string
 module S = MenhirLib.General (* Streams *)
 module I = Sintatico.MenhirInterpreter
 
+open Semantico
+
 let message =
   fun s ->
     match s with
@@ -169,7 +171,7 @@ let estado checkpoint : int =
 
 let sucesso v = Some v
 
-let falha lexbuf (checkpoint : Ast.programa I.checkpoint) =
+let falha lexbuf (checkpoint : (Sast.expressao Ast.programa) I.checkpoint) =
   let estado_atual = estado checkpoint in
   let msg = message estado_atual in
   raise (Erro_Sintatico (Printf.sprintf "%d - %s.\n"
@@ -178,7 +180,6 @@ let falha lexbuf (checkpoint : Ast.programa I.checkpoint) =
 let loop lexbuf resultado =
   let fornecedor = I.lexer_lexbuf_to_supplier Lexico.token lexbuf in
   I.loop_handle sucesso (falha lexbuf) fornecedor resultado
-
 
 
 let parse_com_erro lexbuf =
@@ -204,7 +205,33 @@ let parse_arq nome =
   let _ = close_in ic in
   ast
 
+let verifica_tipos nome =
+  let ast = parse_arq nome in
+  match ast with
+    Some (Some ast) -> semantico ast
+  | _ -> failwith "Nada a fazer!\n"
 
 (* Para compilar:
-     ocamlbuild -use-menhir sintaticoTest.byte
+     ocamlbuild -use-ocamlfind -use-menhir -menhir "menhir --table" -package menhirLib semanticoTest.byte
+  
+   Para usar, entre no ocaml 
+
+     rlwrap ocaml
+
+   e se desejar ver apenas a árvore sintática que sai do analisador sintático, digite
+
+     parse_arq "exemplos/ex2.tip";;
+
+   Depois, para ver a saída do analisador semântico já com a árvore anotada com 
+   o tipos, digite:
+
+   verifica_tipos "exemplos/ex2.tip";;
+
+   Note que o analisador semântico está retornando também o ambiente global. Se 
+   quiser separá-los, digite:
+
+   let (arv, amb) = verifica_tipos "exemplos/ex2.tip";;
+
+    
+
  *)
