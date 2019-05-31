@@ -84,8 +84,29 @@
 %start <Ast.programa> programa
 %%
 
-programa : cs=comandos EOF { Programa cs }
+programa : PUBLIC CLASS ID ACHAVE cs=funcoes FCHAVE EOF { Programa cs }
          ;
+
+funcoes :                     { [] }
+        | f=funcao fs=funcoes { f :: fs }
+        ;
+
+funcao : PUBLIC STATIC t=tipo nome=ID APAR params=parametros FPAR ACHAVE
+           ds=declaracao*
+           cs=comandos
+         FCHAVE { DecFun {fn_nome=nome; fn_tiporet=t; fn_formais=params; fn_locais=(List.flatten ds); fn_corpo=cs} }
+       ;
+
+declaracao : t=tipo; ids=separated_nonempty_list(VIRG, ID); PTV { List.map (fun id -> DecVar (id, t)) ids }
+           ;
+
+parametros :                                { [] }
+           | p=parametro                    { [p] }
+           | p=parametro VIRG ps=parametros { p :: ps }
+           ;
+
+parametro : t=tipo x=ID { (x, t) }
+          ;
 
 (* Lista de comandos. *)
 comandos :                       { [] }
@@ -94,15 +115,58 @@ comandos :                       { [] }
 
 (* Comandos da mini linguagem. *)
 comando : c=comando_s PTV { c }
+        | c=comando_c     { c }
         ;
 
-(* Comandos simples: comandos que devem terminar com ";" *)
-comando_s : c=cmd_atrib             { c }
-          | e=expr ATRIB READINT    { CmdReadInt e }
-          | e=expr ATRIB READFLOAT  { CmdReadFloat e }
-          | e=expr ATRIB READSTRING { CmdReadString e }
-          | e=expr ATRIB READCHAR   { CmdReadChar e }
+(* Comandos compostos: comandos que possuem inicializacao e corpo, mas não terminam com ";" *)
+comando_c : c=cmd_while  { c }
+          | c=cmd_for    { c }
+          | c=cmd_if     { c }
+          | c=cmd_switch { c }
           ;
+
+cmd_while : WHILE APAR e=expr FPAR ACHAVE cs=comandos FCHAVE { CmdWhile (e, cs) }
+          ;
+
+cmd_for : FOR APAR ci=comando_s PTV e=expr PTV ca=comando_s FPAR ACHAVE cs=comandos FCHAVE { CmdFor (ci, e, ca, cs) }
+        ;
+
+cmd_if : IF APAR e=expr FPAR ACHAVE cs=comandos FCHAVE pe=parte_else { CmdIf (e, cs, pe) }
+       ;
+
+cmd_switch : SWITCH APAR e=expr FPAR ACHAVE cs=cases d=default FCHAVE { CmdSwitch (e, cs, d) }
+           ;
+
+cases :                 { [] }
+      | c=case cs=cases { c :: cs }
+      ;
+
+case : CASE e=expr DPTOS cs=comandos BREAK PTV { Case (e, cs) }
+     ;
+
+default:                                     { None }
+       | DEFAULT DPTOS cs=comandos BREAK PTV { Some (Default cs) }
+       ;
+
+parte_else :                                { None }
+           | ELSE ACHAVE cs=comandos FCHAVE { Some cs }
+           | ELSE c=cmd_if                  { Some [c] }
+           ;
+
+(* Comandos simples: comandos que devem terminar com ";" *)
+comando_s : c=cmd_atrib                     { c }
+          | e=expr ATRIB READINT            { CmdReadInt e }
+          | e=expr ATRIB READFLOAT          { CmdReadFloat e }
+          | e=expr ATRIB READSTRING         { CmdReadString e }
+          | e=expr ATRIB READCHAR           { CmdReadChar e }
+          | PRINT APAR args=argumentos FPAR { CmdPrint args }
+          | c=cmd_return                    { c }
+          ;
+
+argumentos :                             { [] }
+           | e=expr                      { [e] }
+           | e=expr VIRG args=argumentos { e :: args }
+           ;
 
 (* Comandos de atribuição. *)
 cmd_atrib : ee=expr ATRIB ed=expr      { CmdAtrib (ee, ed) }
@@ -113,6 +177,11 @@ cmd_atrib : ee=expr ATRIB ed=expr      { CmdAtrib (ee, ed) }
           | ee=expr MAISMAIS           { CmdAtrib (ee, ExpOp (Soma, ee, ExpInt 1)) }
           | ee=expr MENOSMENOS         { CmdAtrib (ee, ExpOp (Sub, ee, ExpInt 1)) }
           ;
+
+(* Comando de retorno. *)
+cmd_return : RETURN e=expr { CmdReturn (Some e) }
+           | RETURN        { CmdReturn None }
+           ;
 
 (* Expressões da mini linguagem. *)
 expr : APAR e=expr FPAR             { e }
@@ -146,7 +215,14 @@ expr : APAR e=expr FPAR             { e }
 variavel : x=ID {VarSimples x }
          ;
 
-
+(* Tipos primitivos da mini linguagem. *)
+tipo : BOOLEAN { Bool }
+     | INT     { Int }
+     | FLOAT   { Float }
+     | CHAR    { Char }
+     | STRING  { String }
+     | VOID    { Void }
+     ;
 
 
 

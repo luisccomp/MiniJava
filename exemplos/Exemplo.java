@@ -1,6 +1,13 @@
+public class Exemplo {
+  public static int fatorial(int n) {
+    int fat, i;
 
-w = s.nextLine().charAt(0);
-x = Integer.parseInt(s.nextLine());
-y = Float.parseFloat(s.nextLine());
-z = s.nextLine();
+    fat = 1;
 
+    for (i = 1; i <= n; i ++) {
+      fat *= i;
+    }
+
+    return fat;
+  }
+}

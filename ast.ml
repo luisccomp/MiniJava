@@ -3,9 +3,26 @@
 type ident = string
 
 
-type programa = Programa of comandos
+type programa = Programa of funcoes
 
 and comandos = comando list
+
+and declaracao = DecVar of ident * tipo
+
+and declaracoes = declaracao list
+
+and funcoes = funcao list
+
+and funcao = DecFun of decfn
+
+(* Declaracao de função. *)
+and decfn = {
+  fn_nome:    ident;
+  fn_tiporet: tipo;
+  fn_formais: (ident * tipo) list;
+  fn_locais: declaracoes;
+  fn_corpo: comandos;
+}
 
 (* Comandos da mini linguagem. *)
 and comando = CmdAtrib of expressao * expressao
@@ -13,6 +30,20 @@ and comando = CmdAtrib of expressao * expressao
             | CmdReadFloat of expressao
             | CmdReadString of expressao
             | CmdReadChar of expressao
+            | CmdWhile of expressao * comandos
+            | CmdFor of comando * expressao * comando * comandos
+            | CmdIf of expressao * comandos * comandos option
+            | CmdPrint of expressoes
+            | CmdReturn of expressao option
+            | CmdSwitch of expressao * cases * default option
+
+and cases = case list
+
+and case = Case of expressao * comandos
+
+and default = Default of comandos
+
+and expressoes = expressao list
 
 (* Tipo de expressões da mini linguagem. *)
 and expressao = ExpVar of variavel
@@ -42,4 +73,12 @@ and oper = Soma
 
 (* Tipo de variaveis da mini linguagem. *)
 and variavel = VarSimples of ident
+
+(* Tipos primitivos da mini linguagem. *)
+and tipo = Int
+         | Float
+         | Char
+         | String
+         | Void
+         | Bool
 
