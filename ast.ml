@@ -11,7 +11,7 @@ type 'expr programa = Programa of 'expr funcoes
 
 and 'expr comandos = ('expr comando) list
 
-and declaracao = DecVar of ident * tipo
+and declaracao = DecVar of ident pos * tipo
 
 and declaracoes = declaracao list
 
@@ -21,9 +21,9 @@ and 'expr funcao = DecFun of 'expr decfn
 
 (* Declaracao de função. *)
 and 'expr decfn = {
-  fn_nome:    ident;
+  fn_nome:    ident pos;
   fn_tiporet: tipo;
-  fn_formais: (ident * tipo) list;
+  fn_formais: (ident pos * tipo) list;
   fn_locais: declaracoes;
   fn_corpo: 'expr comandos;
 }
@@ -82,7 +82,8 @@ and oper = Soma
          | Not
 
 (* Tipo de variaveis da mini linguagem. *)
-and variavel = VarSimples of ident
+and 'expr variaveis = ('expr variavel) list
+and 'expr variavel = VarSimples of ident pos
 
 (* Tipos primitivos da mini linguagem. *)
 and tipo = Int

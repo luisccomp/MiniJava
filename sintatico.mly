@@ -2,8 +2,9 @@
    copia tudo da forma que está. *)
 %{
   (* Módulo contendo as definições dos nós da árvore sintática abstrata. *)
-  open Ast
   open Lexing
+  open Ast
+  open Sast
 %}
 
 (* Tokens lexicais da mini linguagem *)
@@ -82,7 +83,7 @@
 %right UMENOS
 
 (* Simbolo inicial da gramatica. *)
-%start <Ast.programa> programa
+%start <Sast.expressao Ast.programa> programa
 %%
 
 programa : PUBLIC CLASS ID ACHAVE cs=funcoes FCHAVE EOF { Programa cs }
@@ -172,12 +173,12 @@ argumentos :                             { [] }
 
 (* Comandos de atribuição. *)
 cmd_atrib : ee=expr ATRIB ed=expr      { CmdAtrib (ee, ed) }
-          | ee=expr MAISIGUAL ed=expr  { CmdAtrib (ee, ExpOp (Soma, ee, ed)) }
-          | ee=expr MENOSIGUAL ed=expr { CmdAtrib (ee, ExpOp (Sub, ee, ed)) }
-          | ee=expr VEZESIGUAL ed=expr { CmdAtrib (ee, ExpOp (Mult, ee, ed)) }
-          | ee=expr DIVIGUAL ed=expr   { CmdAtrib (ee, ExpOp (Div, ee, ed)) }
-          | ee=expr MAISMAIS           { CmdAtrib (ee, ExpOp (Soma, ee, ExpInt 1)) }
-          | ee=expr MENOSMENOS         { CmdAtrib (ee, ExpOp (Sub, ee, ExpInt 1)) }
+          | ee=expr MAISIGUAL ed=expr  { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ed)) }
+          | ee=expr MENOSIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ed)) }
+          | ee=expr VEZESIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Mult, pos), ee, ed)) }
+          | ee=expr DIVIGUAL ed=expr   { CmdAtrib (ee, ExpOp ((Div, pos), ee, ed)) }
+          | ee=expr MAISMAIS           { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ExpInt 1)) }
+          | ee=expr MENOSMENOS         { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ExpInt 1)) }
           ;
 
 (* Comando de retorno. *)
@@ -198,20 +199,20 @@ expr : APAR e=expr FPAR               { e }
      | x=ID APAR args=argumentos FPAR { ExpFun (x, args) }
      ;
 
-%inline oper : MAIS       { Soma }
-             | MENOS      { Sub }
-             | IGUAL      { Igual }
-             | DIFER      { Difer }
-             | MAIOR      { Maior }
-             | MENOR      { Menor }
-             | MAIORIGUAL { MaiorIgual }
-             | MENORIGUAL { MenorIgual }
-             | ELOG       { E }
-             | OULOG      { Ou }
-             | NOT        { Not }
-             | MOD        { Mod }
-             | DIV        { Div }
-             | VEZES      { Mult }
+%inline oper : pos=MAIS       { (Soma, pos) }
+             | pos=MENOS      { (Sub, pos) }
+             | pos=IGUAL      { (Igual, pos) }
+             | pos=DIFER      { (Difer, pos) }
+             | pos=MAIOR      { (Maior, pos) }
+             | pos=MENOR      { (Menor, pos) }
+             | pos=MAIORIGUAL { (MaiorIgual, pos) }
+             | pos=MENORIGUAL { (MenorIgual, pos) }
+             | pos=ELOG       { (E, pos) }
+             | pos=OULOG      { (Ou, pos) }
+             | pos=NOT        { (Not, pos) }
+             | pos=MOD        { (Mod, pos) }
+             | pos=DIV        { (Div, pos) }
+             | pos=VEZES      { (Mult, pos) }
              ;
 
 (* Variaveis *)
@@ -226,36 +227,4 @@ tipo : BOOLEAN { Bool }
      | STRING  { String }
      | VOID    { Void }
      ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
