@@ -161,6 +161,7 @@ comando_s : c=cmd_atrib                     { c }
           | e=expr ATRIB READSTRING         { CmdReadString e }
           | e=expr ATRIB READCHAR           { CmdReadChar e }
           | PRINT APAR args=argumentos FPAR { CmdPrint args }
+          | x=ID APAR args=argumentos FPAR  { CmdFun (x, args) }
           | c=cmd_return                    { c }
           ;
 
@@ -185,15 +186,16 @@ cmd_return : RETURN e=expr { CmdReturn (Some e) }
            ;
 
 (* Expressões da mini linguagem. *)
-expr : APAR e=expr FPAR             { e }
-     | v=variavel                   { ExpVar v }
-     | i=LITINT                     { ExpInt i }
-     | f=LITFLOAT                   { ExpFloat f }
-     | b=LITBOOL                    { ExpBool b }
-     | s=LITSTRING                  { ExpString s }
-     | c=LITCHAR                    { ExpChar c }
-     | ee=expr op=oper ed=expr      { ExpOp (op, ee, ed) }
-     | op=oper ed=expr %prec UMENOS { ExpUn (op, ed) }
+expr : APAR e=expr FPAR               { e }
+     | v=variavel                     { ExpVar v }
+     | i=LITINT                       { ExpInt i }
+     | f=LITFLOAT                     { ExpFloat f }
+     | b=LITBOOL                      { ExpBool b }
+     | s=LITSTRING                    { ExpString s }
+     | c=LITCHAR                      { ExpChar c }
+     | ee=expr op=oper ed=expr        { ExpOp (op, ee, ed) }
+     | op=oper ed=expr %prec UMENOS   { ExpUn (op, ed) }
+     | x=ID APAR args=argumentos FPAR { ExpFun (x, args) }
      ;
 
 %inline oper : MAIS       { Soma }
