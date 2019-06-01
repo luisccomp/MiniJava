@@ -1,59 +1,52 @@
-(* Nós da árvore sintática abstrata. *)
-open Lexing
 
 (* Tipo identificador. *)
 type ident = string
 
-type 'a pos = 'a * Lexing.position (* Tipo e posição no arquivo fonte. *)
 
+type programa = Programa of funcoes
 
-type 'expr programa = Programa of 'expr funcoes
+and comandos = comando list
 
-and 'expr comandos = ('expr comando) list
-
-and declaracao = DecVar of ident pos * tipo
+and declaracao = DecVar of ident * tipo
 
 and declaracoes = declaracao list
 
-and 'expr funcoes = ('expr funcao) list
+and funcoes = funcao list
 
-and 'expr funcao = DecFun of 'expr decfn
+and funcao = DecFun of decfn
 
 (* Declaracao de função. *)
-and 'expr decfn = {
-  fn_nome:    ident pos;
+and decfn = {
+  fn_nome:    ident;
   fn_tiporet: tipo;
-  fn_formais: (ident pos * tipo) list;
+  fn_formais: (ident * tipo) list;
   fn_locais: declaracoes;
-  fn_corpo: 'expr comandos;
+  fn_corpo: comandos;
 }
 
 (* Comandos da mini linguagem. *)
-and 'expr comando = CmdAtrib of 'expr * 'expr
-            | CmdReadInt of 'expr
-            | CmdReadFloat of 'expr
-            | CmdReadString of 'expr
-            | CmdReadChar of 'expr
-            | CmdWhile of 'expr * ('expr comandos)
-            | CmdFor of ('expr comando) * 'expr * ('expr comando) * ('expr comandos)
-            | CmdIf of 'expr * ('expr comandos) * ('expr comandos) option
-            | CmdPrint of 'expr expressoes
-            | CmdReturn of 'expr option
-            | CmdSwitch of 'expr * ('expr cases) * ('expr default) option
-            | CmdFun of ident * ('expr expressoes)
+and comando = CmdAtrib of expressao * expressao
+            | CmdReadInt of expressao
+            | CmdReadFloat of expressao
+            | CmdReadString of expressao
+            | CmdReadChar of expressao
+            | CmdWhile of expressao * comandos
+            | CmdFor of comando * expressao * comando * comandos
+            | CmdIf of expressao * comandos * comandos option
+            | CmdPrint of expressoes
+            | CmdReturn of expressao option
+            | CmdSwitch of expressao * cases * default option
+            | CmdFun of expressao
 
-and 'expr cases = ('expr case) list
+and cases = case list
 
-and 'expr case = Case of 'expr * ('expr comandos)
+and case = Case of expressao * comandos
 
-and 'expr default = Default of ('expr comandos)
+and default = Default of comandos
 
-and 'expr expressoes = 'expr list
+and expressoes = expressao list
 
 (* Tipo de expressões da mini linguagem. *)
-(* As expressões não serão mais parte desse arquivo. Elas serão declarados em outro
-   fonte pois, para o analisador semântico funcionar corretamente, deveremos criar um tipo "mais
-   geral" de nó. 'expr denota que o tipo é um tipo genérico de expressão.
 and expressao = ExpVar of variavel
               | ExpInt of int
               | ExpFloat of float
@@ -63,7 +56,6 @@ and expressao = ExpVar of variavel
               | ExpOp of oper * expressao * expressao
               | ExpUn of oper * expressao
               | ExpFun of ident * expressoes
-*)
 
 (* Operadores da mini linguagem *)
 and oper = Soma
@@ -82,8 +74,7 @@ and oper = Soma
          | Not
 
 (* Tipo de variaveis da mini linguagem. *)
-and 'expr variaveis = ('expr variavel) list
-and 'expr variavel = VarSimples of ident pos
+and variavel = VarSimples of ident
 
 (* Tipos primitivos da mini linguagem. *)
 and tipo = Int
