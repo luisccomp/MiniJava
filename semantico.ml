@@ -85,7 +85,7 @@ let rec infere_exp amb exp =
     | S.ExpFloat f -> (T.ExpFloat (fst f, A.Float), A.Float)
     | S.ExpChar c -> (T.ExpChar (fst c, A.Char), A.Char)
     | S.ExpString s -> (T.ExpString (fst s, A.String), A.String)
-    | S.ExpBool b -> (T.ExpChar (fst b, A.Bool), A.Bool)
+    | S.ExpBool b -> (T.ExpBool (fst b, A.Bool), A.Bool)
     | S.ExpVar v ->
        (match v with
           A.VarSimples nome ->
@@ -159,15 +159,15 @@ let rec infere_exp amb exp =
                     | Relacional -> verifica_relacional ()
                     | Logico -> verifica_logico ()) in
         (T.ExpOp ((op, tinf), (esq, tesq), (dir, tdir)), tinf)
-    | ExpFun (nome, args) ->
+    | S.ExpFun (nome, args) ->
         (* Verifica os tipos dos parametros. *)
         let rec verifica_parametros args ps fs =
             match (args, ps, fs) with
               (a::args), (p::ps), (f::fs) ->
-                  let mesmo_tipo (posicao a)
-                                 "O parametro eh do tipo %s mas deveria ser do tipo %s"
-                                 p
-                                 f
+                  let _ = mesmo_tipo (posicao a)
+                                     "O parametro eh do tipo %s mas deveria ser do tipo %s"
+                                     p
+                                     f
                   in
                   verifica_parametros args ps fs
             | [], [], [] -> ()
@@ -187,8 +187,8 @@ let rec infere_exp amb exp =
                     (* Verifica se o tipo de cada argumento confere com o tipo declarado *)
                     (* do parâmetro formal correspondente.                               *)
                     let _ = verifica_parametros args (List.map snd argst) tipos_formais
-                    in (T.ExpChamada (id, (List.map fst argst), tipo_fn), tipo_fn)
-                | Amb.EntVar -> 
+                    in (T.ExpFun (id, (List.map fst argst), tipo_fn), tipo_fn)
+                | Amb.EntVar _ -> 
                     (* Se estiver associada a uma variável, falhe *)
                     let msg = id ^ " eh uma variavel e nao uma funcao" in
                     failwith (msg_erro nome msg)
@@ -222,7 +222,7 @@ let rec verifica_cmd amb tiporet cmd =
                                tiporet
             in
             CmdReturn (Some e1))
-    | CmdSe (teste, entao, senao) ->
+    | CmdIf (teste, entao, senao) ->
         let (teste1,tinf) = infere_exp amb teste in
         (* O tipo inferido para a expressão 'teste' do condicional deve ser booleano *)
         let _ = mesmo_tipo (posicao teste)
@@ -238,7 +238,7 @@ let rec verifica_cmd amb tiporet cmd =
               None -> None
             | Some bloco -> Some (List.map (verifica_cmd amb tiporet) bloco)
         in
-        CmdSe (teste1, entao1, senao1)
+        CmdIf (teste1, entao1, senao1)
     | CmdAtrib (elem, exp) ->
         (* Infere o tipo da expressão no lado direito da atribuição *)
         let (exp,  tdir) = infere_exp amb exp
@@ -283,7 +283,7 @@ let rec verifica_cmd amb tiporet cmd =
         CmdReadString exp1
     | CmdReadChar exp ->
         (* O comando de leitura de char so aceita char. *)
-        let (exp1, tinf) = infere_exp exp in
+        let (exp1, tinf) = infere_exp amb exp in
         let _ = mesmo_tipo (posicao exp)
                            "O comando de leitura esperava tipo %s mas foi usado tipo %s"
                            A.Char
@@ -303,7 +303,7 @@ let rec verifica_cmd amb tiporet cmd =
         let comandos1 = List.map (verifica_cmd amb tiporet) comandos in
         CmdFor (init1, teste1, fim1, comandos1)
     | CmdWhile (teste, comandos) ->
-        let (teste1, tinf) = infere_exp teste amb in
+        let (teste1, tinf) = infere_exp amb teste in
         (* O teste do while deve ser booleano. *)
         let _ = mesmo_tipo (posicao teste)
                            "O teste do while deveria ser do tipo %s e nao %s"
@@ -312,38 +312,97 @@ let rec verifica_cmd amb tiporet cmd =
         in
         let comandos1 = List.map (verifica_cmd amb tiporet) comandos in
         CmdWhile (teste1, comandos1)
-    
+    | CmdSwitch (teste, cases, default) ->
+        (* Verifica os comandos "case" dentro do switch. *)
+        let rec verifica_case amb tiporet tipovar cmd =
+            match cmd with
+              Case (exp, comandos) ->
+                let exp1, tinf = infere_exp amb exp in
+                (* O tipo usado na inicialização do switch e o tipo usado para testes no case devem ser iguais *)
+                let _ = mesmo_tipo (posicao exp)
+                                   "Foi usado uma expressao do tipo %s no case mas esperava %s"
+                                   tipovar
+                                   tinf
+                in
+                let comandos1 = List.map (verifica_cmd amb tiporet) comandos in
+                Case (exp1, comandos1)
+            | _ -> failwith "Comando desconhecido."
+        in
+        let teste1, tinf = infere_exp amb teste in
+        let cases1 = List.map (verifica_case amb tiporet tinf) cases in
+        let default1 = match default with
+                         None -> None
+                       | Some (Default bloco) -> Some (Default (List.map (verifica_cmd amb tiporet) bloco))
+        in
+        CmdSwitch (teste1, cases1, default1)
+    | CmdPrint expressoes ->
+        (* Verifica o tipo de cada argumento da função de saída. *)
+        let exps = List.map (infere_exp amb) expressoes in
+        CmdPrint (List.map fst exps)
+    | _ -> failwith "Semantico: comando desconhecido."
+
+
+and verifica_fun amb ast =
+    let open A in
+    match ast with
+      A.DecFun {fn_nome; fn_tiporet; fn_formais; fn_locais; fn_corpo} ->
+        (* Estende o ambiente global, adicionando um ambiente local *)
+        let ambfn = Amb.novo_escopo amb in
+        (* Insere os parâmetros no novo ambiente *)
+        let insere_parametro (v, t) = Amb.insere_param ambfn (fst v) t in
+        let _ = List.iter insere_parametro fn_formais in
+        (* Insere as variaveis locais no novo ambiente *)
+        let insere_local = function
+            DecVar (v, t) -> Amb.insere_local ambfn (fst v) t in
+        let _ = List.iter insere_local fn_locais in
+        (* Verifica cada comando presente no corpo da função usando o novo ambiente *)
+        let corpo_tipado = List.map (verifica_cmd ambfn fn_tiporet) fn_corpo in
+        A.DecFun {fn_nome; fn_tiporet; fn_formais; fn_locais; fn_corpo=corpo_tipado}
+
+
+let rec verifica_dup xs =
+    match xs with
+      [] -> []
+    | (nome, t)::xs ->
+        let id = fst nome in
+        if (List.for_all (fun (n, t) -> (fst n) <> id) xs) then
+            (id, t) :: verifica_dup xs
+        else
+            let msg = "Parametro duplicado " ^ id in
+            failwith (msg_erro nome msg)
+
+
+(* Insere declaração de variável no ambiente. *)
+let insere_declaracao_var amb dec =
+    let open A in
+    match dec with
+      DecVar (nome, tipo) -> Amb.insere_local amb (fst nome) tipo
+
+
+let insere_declaracao_fun amb dec =
+    let open A in
+    match dec with
+      DecFun {fn_nome; fn_tiporet; fn_formais; fn_corpo} ->
+        (* Verifica se não há parâmetros duplicados. *)
+        let formais = verifica_dup fn_formais in
+        let nome = fst fn_nome in
+        Amb.insere_fun amb nome formais fn_tiporet
+
+
+(* Lista de cabeçalho das funções pré definidas. *)
+let fn_predefs = let open A in []
+
+(* Insere as funções pré definidas no ambiente global. *)
+let declara_predefinidas amb =
+    List.iter (fun (n, ps, tr) -> Amb.insere_fun amb n ps tr) fn_predefs
         
         
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let semantico ast =
+    (* Cria o ambiente global inicialmente vazio. *)
+    let amb_global = Amb.novo_amb [] in
+    let _ = declara_predefinidas amb_global in
+    let (A.Programa decs_funs) = ast in
+    let _ = List.iter (insere_declaracao_fun amb_global) decs_funs in
+    (* Verificação de tipo nas funções. *)
+    let decs_funs = List.map (verifica_fun amb_global) decs_funs in
+    (A.Programa decs_funs, amb_global)

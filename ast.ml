@@ -27,18 +27,18 @@ and 'expr decfn = {
 }
 
 (* Comandos da mini linguagem. *)
-and 'expr comando = CmdAtrib of 'expr * 'expr
-            | CmdReadInt of 'expr
-            | CmdReadFloat of 'expr
-            | CmdReadString of 'expr
-            | CmdReadChar of 'expr
-            | CmdWhile of 'expr * ('expr comandos)
-            | CmdFor of ('expr comando) * 'expr * ('expr comando) * ('expr comandos)
-            | CmdIf of 'expr * ('expr comandos) * ('expr comandos) option
+and 'expr comando = CmdAtrib of 'expr * 'expr (*OK*)
+            | CmdReadInt of 'expr (*OK*)
+            | CmdReadFloat of 'expr (*OK*)
+            | CmdReadString of 'expr (*OK*)
+            | CmdReadChar of 'expr (*OK*)
+            | CmdWhile of 'expr * ('expr comandos) (*OK*)
+            | CmdFor of ('expr comando) * 'expr * ('expr comando) * ('expr comandos) (*OK*)
+            | CmdIf of 'expr * ('expr comandos) * ('expr comandos) option (*OK*)
             | CmdPrint of 'expr expressoes
-            | CmdReturn of 'expr option
+            | CmdReturn of 'expr option (*OK*)
             | CmdSwitch of 'expr * ('expr cases) * ('expr default) option
-            | CmdFun of 'expr
+            | CmdFun of 'expr (*OK*)
 
 and 'expr cases = ('expr case) list
 
