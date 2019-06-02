@@ -252,8 +252,67 @@ let rec verifica_cmd amb tiporet cmd =
         in
         CmdAtrib (elem1, exp)
     | CmdFun exp ->
-        let (exp,tinf) = infere_exp amb exp in
-        CmdChamada exp
+        let (exp, tinf) = infere_exp amb exp in
+        CmdFun exp
+    | CmdReadInt exp ->
+        (* O comando de leitura so pode ser usado com inteiros. *)
+        let (exp1, tinf) = infere_exp amb exp in
+        let _ = mesmo_tipo (posicao exp)
+                           "O comando de leitura esperava tipo %s mas foi usado tipo %s"
+                           A.Int
+                           tinf
+        in
+        CmdReadInt exp1
+    | CmdReadFloat exp ->
+        (* O comando de leitura de float so pode ser usado com floats. *)
+        let (exp1, tinf) = infere_exp amb exp in
+        let _ = mesmo_tipo (posicao exp)
+                           "O comando de leitura esperava tipo %s mas foi usado tipo %s"
+                           A.Float
+                           tinf
+        in
+        CmdReadFloat exp1
+    | CmdReadString exp ->
+        (* O comando de leitura de string so aceita string. *)
+        let (exp1, tinf) = infere_exp amb exp in
+        let _ = mesmo_tipo (posicao exp)
+                           "O comando de leitura esperava tipo %s mas foi usado tipo %s"
+                           A.String
+                           tinf
+        in
+        CmdReadString exp1
+    | CmdReadChar exp ->
+        (* O comando de leitura de char so aceita char. *)
+        let (exp1, tinf) = infere_exp exp in
+        let _ = mesmo_tipo (posicao exp)
+                           "O comando de leitura esperava tipo %s mas foi usado tipo %s"
+                           A.Char
+                           tinf
+        in
+        CmdReadChar exp1
+    | CmdFor (init, teste, fim, comandos) -> 
+        let init1 = verifica_cmd amb tiporet init in
+        let (teste1, tinf) = infere_exp amb teste in
+        (* O teste do for deve ser do tipo booleano. *)
+        let _ = mesmo_tipo (posicao teste)
+                           "O teste do for deveria ser do tipo %s e nao %s"
+                           A.Bool
+                           tinf
+        in
+        let fim1 = verifica_cmd amb tiporet fim in
+        let comandos1 = List.map (verifica_cmd amb tiporet) comandos in
+        CmdFor (init1, teste1, fim1, comandos1)
+    | CmdWhile (teste, comandos) ->
+        let (teste1, tinf) = infere_exp teste amb in
+        (* O teste do while deve ser booleano. *)
+        let _ = mesmo_tipo (posicao teste)
+                           "O teste do while deveria ser do tipo %s e nao %s"
+                           A.Bool
+                           tinf
+        in
+        let comandos1 = List.map (verifica_cmd amb tiporet) comandos in
+        CmdWhile (teste1, comandos1)
+    
         
         
             
