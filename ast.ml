@@ -1,53 +1,55 @@
+open Lexing
 
 (* Tipo identificador. *)
 type ident = string
+type 'a pos = 'a * Lexing.position (* Tipo e posição no arquivo fonte. *)
 
 
-type programa = Programa of funcoes
+type 'expr programa = Programa of 'expr funcoes
 
-and comandos = comando list
+and 'expr comandos = ('expr comando) list
 
-and declaracao = DecVar of ident * tipo
+and declaracao = DecVar of (ident pos) * tipo
 
 and declaracoes = declaracao list
 
-and funcoes = funcao list
+and 'expr funcoes = ('expr funcao) list
 
-and funcao = DecFun of decfn
+and 'expr funcao = DecFun of ('expr decfn)
 
 (* Declaracao de função. *)
-and decfn = {
-  fn_nome:    ident;
+and 'expr decfn = {
+  fn_nome:    ident pos;
   fn_tiporet: tipo;
-  fn_formais: (ident * tipo) list;
+  fn_formais: (ident pos * tipo) list;
   fn_locais: declaracoes;
-  fn_corpo: comandos;
+  fn_corpo: 'expr comandos;
 }
 
 (* Comandos da mini linguagem. *)
-and comando = CmdAtrib of expressao * expressao
-            | CmdReadInt of expressao
-            | CmdReadFloat of expressao
-            | CmdReadString of expressao
-            | CmdReadChar of expressao
-            | CmdWhile of expressao * comandos
-            | CmdFor of comando * expressao * comando * comandos
-            | CmdIf of expressao * comandos * comandos option
-            | CmdPrint of expressoes
-            | CmdReturn of expressao option
-            | CmdSwitch of expressao * cases * default option
-            | CmdFun of expressao
+and 'expr comando = CmdAtrib of 'expr * 'expr
+            | CmdReadInt of 'expr
+            | CmdReadFloat of 'expr
+            | CmdReadString of 'expr
+            | CmdReadChar of 'expr
+            | CmdWhile of 'expr * ('expr comandos)
+            | CmdFor of ('expr comando) * 'expr * ('expr comando) * ('expr comandos)
+            | CmdIf of 'expr * ('expr comandos) * ('expr comandos) option
+            | CmdPrint of 'expr expressoes
+            | CmdReturn of 'expr option
+            | CmdSwitch of 'expr * ('expr cases) * ('expr default) option
+            | CmdFun of 'expr
 
-and cases = case list
+and 'expr cases = ('expr case) list
 
-and case = Case of expressao * comandos
+and 'expr case = Case of 'expr * ('expr comandos)
 
-and default = Default of comandos
+and 'expr default = Default of 'expr comandos
 
-and expressoes = expressao list
+and 'expr expressoes = 'expr list
 
 (* Tipo de expressões da mini linguagem. *)
-and expressao = ExpVar of variavel
+(*and expressao = ExpVar of variavel
               | ExpInt of int
               | ExpFloat of float
               | ExpBool of bool
@@ -55,7 +57,7 @@ and expressao = ExpVar of variavel
               | ExpChar of char
               | ExpOp of oper * expressao * expressao
               | ExpUn of oper * expressao
-              | ExpFun of ident * expressoes
+              | ExpFun of ident * expressoes*)
 
 (* Operadores da mini linguagem *)
 and oper = Soma
@@ -74,7 +76,8 @@ and oper = Soma
          | Not
 
 (* Tipo de variaveis da mini linguagem. *)
-and variavel = VarSimples of ident
+and 'expr variavel = VarSimples of ident pos
+and 'expr variaveis = ('expr variavel) list
 
 (* Tipos primitivos da mini linguagem. *)
 and tipo = Int

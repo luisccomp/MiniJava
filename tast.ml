@@ -1,6 +1,4 @@
-(* Nó da arvore sintatica tipada. Esse nó acompanha o tipo dele. *)
 open Ast
-
 
 type expressao = ExpVar of (expressao variavel) * tipo
                | ExpInt of int * tipo
@@ -9,6 +7,6 @@ type expressao = ExpVar of (expressao variavel) * tipo
                | ExpString of string * tipo
                | ExpChar of char * tipo
                | ExpOp of (oper * tipo) * (expressao * tipo) * (expressao * tipo)
-               | ExpUn of (oper * tipo) * expressao
-               | ExpFun of ident * (expressao * tipo) list
+               | ExpUn of (oper * tipo) * (expressao * tipo)
+               | ExpFun of ident * (expressao expressoes) * tipo
 

@@ -30,7 +30,10 @@
   (* Cria uma exceção baseada em uma mensagem de erro genérica. *)
   let erro lin col msg =
     let mensagem = sprintf "%d-%d: %s" lin col msg in
-    mensagem    
+    mensagem
+
+  (* Retrna a posição atual do analisador léxico. *)
+  let pos_atual lexbuf = lexbuf.lex_start_p
 }
 
 (* Abreviações: se as regras forem muito extensas, uma boa prática é criar
@@ -65,75 +68,75 @@ rule token = parse
                                           let lin = pos.pos_lnum
                                           and col = pos.pos_cnum - pos.pos_bol - 1 in
                                           comentario_bloco lin col 0 lexbuf }
-| '('                                   { APAR }
-| ')'                                   { FPAR }
-| '['                                   { ACOL }
-| ']'                                   { FCOL }
+| '('                                   { APAR (pos_atual lexbuf) }
+| ')'                                   { FPAR (pos_atual lexbuf) }
+| '['                                   { ACOL (pos_atual lexbuf) }
+| ']'                                   { FCOL (pos_atual lexbuf) }
 | "String[] args"                       { token lexbuf }
-| "+="                                  { MAISIGUAL }
-| "-="                                  { MENOSIGUAL }
-| "*="                                  { VEZESIGUAL }
-| "/="                                  { DIVIGUAL }
-| "++"                                  { MAISMAIS }
-| "--"                                  { MENOSMENOS }
-| '+'                                   { MAIS }
-| '='                                   { ATRIB }
-| "public"                              { PUBLIC }
-| "%"                                   { MOD }
-| "char"                                { CHAR }
-| "boolean"                             { BOOLEAN }
-| "return"                              { RETURN }
-| "default"                             { DEFAULT }
-| "class"                               { CLASS }
-| "static"                              { STATIC }
-| "void"                                { VOID }
-| "System.out.printf"                   { PRINT } (* Instrução de impressão na tela *)
-| "switch"                              { SWITCH }
-| "case"                                { CASE }
-| "break"                               { BREAK }
-| '{'                                   { ACHAVE }
-| '}'                                   { FCHAVE }
-| "int"                                 { INT }
-| "float"                               { FLOAT }
-| "Float.parseFloat(s.nextLine())"      { READFLOAT }
-| "Integer.parseInt(s.nextLine())"      { READINT }
-| "s.nextLine().charAt(0)"              { READCHAR }
-| "s.nextLine()"                        { READSTRING }
-| ';'                                   { PTV }
-| ':'                                   { DPTOS }
-| '.'                                   { PTO }
-| '-'                                   { MENOS }
-| "=="                                  { IGUAL }
-| "!="                                  { DIFER }
-| '>'                                   { MAIOR }
-| '<'                                   { MENOR }
-| ">="                                  { MAIORIGUAL }
-| "<="                                  { MENORIGUAL }
-| "&&"                                  { ELOG }
-| "||"                                  { OULOG }
-| '!'                                   { NOT }
-| "String"                              { STRING }
-| '*'                                   { VEZES }
-| '/'                                   { DIV }
-| ','                                   { VIRG }
+| "+="                                  { MAISIGUAL (pos_atual lexbuf) }
+| "-="                                  { MENOSIGUAL (pos_atual lexbuf) }
+| "*="                                  { VEZESIGUAL (pos_atual lexbuf) }
+| "/="                                  { DIVIGUAL (pos_atual lexbuf) }
+| "++"                                  { MAISMAIS (pos_atual lexbuf) }
+| "--"                                  { MENOSMENOS (pos_atual lexbuf) }
+| '+'                                   { MAIS (pos_atual lexbuf) }
+| '='                                   { ATRIB (pos_atual lexbuf) }
+| "public"                              { PUBLIC (pos_atual lexbuf) }
+| "%"                                   { MOD (pos_atual lexbuf) }
+| "char"                                { CHAR (pos_atual lexbuf) }
+| "boolean"                             { BOOLEAN (pos_atual lexbuf) }
+| "return"                              { RETURN (pos_atual lexbuf) }
+| "default"                             { DEFAULT (pos_atual lexbuf) }
+| "class"                               { CLASS (pos_atual lexbuf) }
+| "static"                              { STATIC (pos_atual lexbuf) }
+| "void"                                { VOID (pos_atual lexbuf) }
+| "System.out.printf"                   { PRINT (pos_atual lexbuf) } (* Instrução de impressão na tela *)
+| "switch"                              { SWITCH (pos_atual lexbuf) }
+| "case"                                { CASE (pos_atual lexbuf) }
+| "break"                               { BREAK (pos_atual lexbuf) }
+| '{'                                   { ACHAVE (pos_atual lexbuf) }
+| '}'                                   { FCHAVE (pos_atual lexbuf) }
+| "int"                                 { INT (pos_atual lexbuf) }
+| "float"                               { FLOAT (pos_atual lexbuf) }
+| "Float.parseFloat(s.nextLine())"      { READFLOAT (pos_atual lexbuf) }
+| "Integer.parseInt(s.nextLine())"      { READINT (pos_atual lexbuf) }
+| "s.nextLine().charAt(0)"              { READCHAR (pos_atual lexbuf) }
+| "s.nextLine()"                        { READSTRING (pos_atual lexbuf) }
+| ';'                                   { PTV (pos_atual lexbuf) }
+| ':'                                   { DPTOS (pos_atual lexbuf) }
+| '.'                                   { PTO (pos_atual lexbuf) }
+| '-'                                   { MENOS (pos_atual lexbuf) }
+| "=="                                  { IGUAL (pos_atual lexbuf) }
+| "!="                                  { DIFER (pos_atual lexbuf) }
+| '>'                                   { MAIOR (pos_atual lexbuf) }
+| '<'                                   { MENOR (pos_atual lexbuf) }
+| ">="                                  { MAIORIGUAL (pos_atual lexbuf) }
+| "<="                                  { MENORIGUAL (pos_atual lexbuf) }
+| "&&"                                  { ELOG (pos_atual lexbuf) }
+| "||"                                  { OULOG (pos_atual lexbuf) }
+| '!'                                   { NOT (pos_atual lexbuf) }
+| "String"                              { STRING (pos_atual lexbuf) }
+| '*'                                   { VEZES (pos_atual lexbuf) }
+| '/'                                   { DIV (pos_atual lexbuf) }
+| ','                                   { VIRG (pos_atual lexbuf) }
 | booleano as b                         { let valor_booleano = bool_of_string b in
-                                          LITBOOL valor_booleano }
-| caractere as chr                      { LITCHAR chr.[1] }
+                                          LITBOOL (valor_booleano, pos_atual lexbuf) }
+| caractere as chr                      { LITCHAR (chr.[1], pos_atual lexbuf) }
 | numfloat as num                       { let numero = float_of_string num in
-                                          LITFLOAT numero }
+                                          LITFLOAT (numero, pos_atual lexbuf) }
 | inteiro as num                        { let numero = int_of_string num in
-                                          LITINT numero }
-| "if"                                  { IF }
-| "else"                                { ELSE }
-| "while"                               { WHILE }
-| "for"                                 { FOR }
-| identificador as id                   { ID id }
+                                          LITINT (numero, pos_atual lexbuf) }
+| "if"                                  { IF (pos_atual lexbuf) }
+| "else"                                { ELSE (pos_atual lexbuf) }
+| "while"                               { WHILE (pos_atual lexbuf) }
+| "for"                                 { FOR (pos_atual lexbuf) }
+| identificador as id                   { ID (id, pos_atual lexbuf) }
 | '"'                                   { let pos = lexbuf.lex_curr_p in
                                           let lin = pos.pos_lnum
                                           and col = pos.pos_cnum - pos.pos_bol - 1 in
                                           let buffer = Buffer.create 1 in
                                           let str = leia_string lin col buffer lexbuf in
-                                          LITSTRING str }
+                                          LITSTRING (str, pos_atual lexbuf) }
 (*| _ as c                                { failwith (msg_erro lexbuf c) }*)
 | _ as c                                { raise (Erro (msg_erro lexbuf c)) }
 | eof                                   { EOF }

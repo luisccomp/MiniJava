@@ -36,6 +36,7 @@ and comando = CmdAtrib of expressao * expressao
             | CmdPrint of expressoes
             | CmdReturn of expressao option
             | CmdSwitch of expressao * cases * default option
+            | CmdFun of expressao
 
 and cases = case list
 
@@ -54,6 +55,7 @@ and expressao = ExpVar of variavel
               | ExpChar of char
               | ExpOp of oper * expressao * expressao
               | ExpUn of oper * expressao
+              | ExpFun of ident * expressoes
 
 (* Operadores da mini linguagem *)
 and oper = Soma

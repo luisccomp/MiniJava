@@ -161,6 +161,7 @@ comando_s : c=cmd_atrib                     { c }
           | e=expr ATRIB READCHAR           { CmdReadChar e }
           | PRINT APAR args=argumentos FPAR { CmdPrint args }
           | c=cmd_return                    { c }
+          | e=exp_fun                       { CmdFun e }
           ;
 
 argumentos :                             { [] }
@@ -193,8 +194,14 @@ expr : APAR e=expr FPAR             { e }
      | c=LITCHAR                    { ExpChar c }
      | ee=expr op=oper ed=expr      { ExpOp (op, ee, ed) }
      | op=oper ed=expr %prec UMENOS { ExpUn (op, ed) }
+     | ef=exp_fun                   { ef }
      ;
 
+(* Uma chamada de função. *)
+exp_fun : x=ID APAR args=argumentos FPAR { ExpFun (x, args) }
+        ;
+
+(* Operadores da mini linguagem. *)
 %inline oper : MAIS       { Soma }
              | MENOS      { Sub }
              | IGUAL      { Igual }
@@ -223,36 +230,4 @@ tipo : BOOLEAN { Bool }
      | STRING  { String }
      | VOID    { Void }
      ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

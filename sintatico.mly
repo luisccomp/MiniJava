@@ -1,72 +1,74 @@
 (* Header: da mesma forma que no modulo lexico, o header do módulo sintático 
    copia tudo da forma que está. *)
 %{
+  open Lexing
   (* Módulo contendo as definições dos nós da árvore sintática abstrata. *)
   open Ast
+  open Sast
 %}
 
 (* Tokens lexicais da mini linguagem *)
-%token APAR
-%token FPAR
-%token ACOL
-%token FCOL
-%token ATRIB
-%token IF
-%token WHILE
-%token MAIS
-%token PUBLIC
-%token CLASS
-%token STATIC
-%token VOID
-%token ACHAVE
-%token FCHAVE
-%token INT
-%token PTV
-%token PTO
-%token MENOS
-%token ELSE
-%token IGUAL
-%token DIFER
-%token MAIOR
-%token MENOR
-%token MAIORIGUAL
-%token MENORIGUAL
-%token ELOG
-%token OULOG
-%token NOT
-%token STRING
-%token <float> LITFLOAT
-%token VEZES
-%token DIV
-%token VIRG
-%token FLOAT
-%token READFLOAT
-%token READINT
-%token READCHAR
-%token READSTRING
-%token MAISMAIS
-%token MENOSMENOS
-%token DPTOS
-%token SWITCH
-%token DEFAULT
-%token CASE
-%token BREAK
-%token CHAR
-%token FOR
-%token MAISIGUAL
-%token MENOSIGUAL
-%token VEZESIGUAL
-%token BOOLEAN
-%token DIVIGUAL
-%token ARGV
-%token MOD
-%token RETURN
-%token <bool> LITBOOL
-%token <int> LITINT
-%token <string> LITSTRING
-%token <char> LITCHAR
-%token <string> ID
-%token PRINT
+%token <Lexing.position> APAR
+%token <Lexing.position> FPAR
+%token <Lexing.position> ACOL
+%token <Lexing.position> FCOL
+%token <Lexing.position> ATRIB
+%token <Lexing.position> IF
+%token <Lexing.position> WHILE
+%token <Lexing.position> MAIS
+%token <Lexing.position> PUBLIC
+%token <Lexing.position> CLASS
+%token <Lexing.position> STATIC
+%token <Lexing.position> VOID
+%token <Lexing.position> ACHAVE
+%token <Lexing.position> FCHAVE
+%token <Lexing.position> INT
+%token <Lexing.position> PTV
+%token <Lexing.position> PTO
+%token <Lexing.position> MENOS
+%token <Lexing.position> ELSE
+%token <Lexing.position> IGUAL
+%token <Lexing.position> DIFER
+%token <Lexing.position> MAIOR
+%token <Lexing.position> MENOR
+%token <Lexing.position> MAIORIGUAL
+%token <Lexing.position> MENORIGUAL
+%token <Lexing.position> ELOG
+%token <Lexing.position> OULOG
+%token <Lexing.position> NOT
+%token <Lexing.position> STRING
+%token <float * Lexing.position> LITFLOAT
+%token <Lexing.position> VEZES
+%token <Lexing.position> DIV
+%token <Lexing.position> VIRG
+%token <Lexing.position> FLOAT
+%token <Lexing.position> READFLOAT
+%token <Lexing.position> READINT
+%token <Lexing.position> READCHAR
+%token <Lexing.position> READSTRING
+%token <Lexing.position> MAISMAIS
+%token <Lexing.position> MENOSMENOS
+%token <Lexing.position> DPTOS
+%token <Lexing.position> SWITCH
+%token <Lexing.position> DEFAULT
+%token <Lexing.position> CASE
+%token <Lexing.position> BREAK
+%token <Lexing.position> CHAR
+%token <Lexing.position> FOR
+%token <Lexing.position> MAISIGUAL
+%token <Lexing.position> MENOSIGUAL
+%token <Lexing.position> VEZESIGUAL
+%token <Lexing.position> BOOLEAN
+%token <Lexing.position> DIVIGUAL
+%token <Lexing.position> ARGV
+%token <Lexing.position> MOD
+%token <Lexing.position> RETURN
+%token <bool * Lexing.position> LITBOOL
+%token <int * Lexing.position> LITINT
+%token <string * Lexing.position> LITSTRING
+%token <char * Lexing.position> LITCHAR
+%token <string * Lexing.position> ID
+%token <Lexing.position> PRINT
 %token EOF
 
 (* Precedência de tokens *)
@@ -81,7 +83,7 @@
 %right UMENOS
 
 (* Simbolo inicial da gramatica. *)
-%start <Ast.programa> programa
+%start <Sast.expressao Ast.programa> programa
 %%
 
 programa : PUBLIC CLASS ID ACHAVE cs=funcoes FCHAVE EOF { Programa cs }
@@ -170,13 +172,13 @@ argumentos :                             { [] }
            ;
 
 (* Comandos de atribuição. *)
-cmd_atrib : ee=expr ATRIB ed=expr      { CmdAtrib (ee, ed) }
-          | ee=expr MAISIGUAL ed=expr  { CmdAtrib (ee, ExpOp (Soma, ee, ed)) }
-          | ee=expr MENOSIGUAL ed=expr { CmdAtrib (ee, ExpOp (Sub, ee, ed)) }
-          | ee=expr VEZESIGUAL ed=expr { CmdAtrib (ee, ExpOp (Mult, ee, ed)) }
-          | ee=expr DIVIGUAL ed=expr   { CmdAtrib (ee, ExpOp (Div, ee, ed)) }
-          | ee=expr MAISMAIS           { CmdAtrib (ee, ExpOp (Soma, ee, ExpInt 1)) }
-          | ee=expr MENOSMENOS         { CmdAtrib (ee, ExpOp (Sub, ee, ExpInt 1)) }
+cmd_atrib : ee=expr ATRIB ed=expr          { CmdAtrib (ee, ed) }
+          | ee=expr pos=MAISIGUAL ed=expr  { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ed)) }
+          | ee=expr pos=MENOSIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ed)) }
+          | ee=expr pos=VEZESIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Mult, pos), ee, ed)) }
+          | ee=expr pos=DIVIGUAL ed=expr   { CmdAtrib (ee, ExpOp ((Div, pos), ee, ed)) }
+          (*| ee=expr pos=MAISMAIS           { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ExpInt 1)) }*)
+          (*| ee=expr pos=MENOSMENOS         { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ExpInt 1)) }*)
           ;
 
 (* Comando de retorno. *)
@@ -202,20 +204,20 @@ exp_fun : x=ID APAR args=argumentos FPAR { ExpFun (x, args) }
         ;
 
 (* Operadores da mini linguagem. *)
-%inline oper : MAIS       { Soma }
-             | MENOS      { Sub }
-             | IGUAL      { Igual }
-             | DIFER      { Difer }
-             | MAIOR      { Maior }
-             | MENOR      { Menor }
-             | MAIORIGUAL { MaiorIgual }
-             | MENORIGUAL { MenorIgual }
-             | ELOG       { E }
-             | OULOG      { Ou }
-             | NOT        { Not }
-             | MOD        { Mod }
-             | DIV        { Div }
-             | VEZES      { Mult }
+%inline oper : pos=MAIS       { (Soma, pos) }
+             | pos=MENOS      { (Sub, pos) }
+             | pos=IGUAL      { (Igual, pos) }
+             | pos=DIFER      { (Difer, pos) }
+             | pos=MAIOR      { (Maior, pos) }
+             | pos=MENOR      { (Menor, pos) }
+             | pos=MAIORIGUAL { (MaiorIgual, pos) }
+             | pos=MENORIGUAL { (MenorIgual, pos) }
+             | pos=ELOG       { (E, pos) }
+             | pos=OULOG      { (Ou, pos) }
+             | pos=NOT        { (Not, pos) }
+             | pos=MOD        { (Mod, pos) }
+             | pos=DIV        { (Div, pos) }
+             | pos=VEZES      { (Mult, pos) }
              ;
 
 (* Variaveis *)
