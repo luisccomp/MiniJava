@@ -177,8 +177,8 @@ cmd_atrib : ee=expr ATRIB ed=expr          { CmdAtrib (ee, ed) }
           | ee=expr pos=MENOSIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ed)) }
           | ee=expr pos=VEZESIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Mult, pos), ee, ed)) }
           | ee=expr pos=DIVIGUAL ed=expr   { CmdAtrib (ee, ExpOp ((Div, pos), ee, ed)) }
-          (*| ee=expr pos=MAISMAIS           { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ExpInt 1)) }*)
-          (*| ee=expr pos=MENOSMENOS         { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ExpInt 1)) }*)
+          | ee=expr pos=MAISMAIS           { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ExpInt (1, pos))) }
+          | ee=expr pos=MENOSMENOS         { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ExpInt (1, pos))) }
           ;
 
 (* Comando de retorno. *)
