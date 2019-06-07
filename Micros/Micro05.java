@@ -2,7 +2,11 @@ import java.util.Scanner;
 
 public class Micro05 {
     public static void main(String[] args) {
+<<<<<<< HEAD
         /*String nome;
+=======
+        String nome;
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
         char sexo;
         int x, h, m;
         Scanner s = new Scanner(System.in);
@@ -26,6 +30,7 @@ public class Micro05 {
         }
 
         System.out.printf("Foram inseridos %d homens", h);
+<<<<<<< HEAD
         System.out.printf("Foram inseridos %d mulheres", m);*/
         String nome;
         char sexo;
@@ -49,5 +54,8 @@ public class Micro05 {
                     System.out.printf("Sexo so pode ser M ou H\n");
             }
         }
+=======
+        System.out.printf("Foram inseridos %d mulheres", m);
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
     }
 }

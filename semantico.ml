@@ -33,7 +33,8 @@ type classe_op = Aritimetico
 let classifica op = let open A in
     match op with
       Ou
-    | E -> Logico
+    | E
+    | Not -> Logico
     | Menor
     | Maior
     | MenorIgual
@@ -210,7 +211,33 @@ let rec infere_exp amb exp =
         with Not_found ->
             let msg = id ^ " eh uma variavel e nao uma funcao!" in
             failwith (msg_erro nome msg)
+<<<<<<< HEAD
         
+=======
+    | S.ExpUn (op, dir) ->
+        let (dir, tdir) = infere_exp amb dir in (* Inferindo o tipo da expressão a direita do operador *)
+       (match (fst op) with
+          A.Sub ->
+           (match tdir with
+              A.Int
+            | A.Float ->
+                (* O tipo da expressão como um todo é o da expressão da direita *)
+                let op = fst op in
+                (T.ExpUn ((op, tdir), (dir, tdir)), tdir)
+            | t ->
+                let msg = "Um operador menos unario nao pode ser usado com o tipo " ^ (nome_tipo t) in
+                failwith (msg_erro_pos (snd pos) msg))
+        | A.Not ->
+           (match tdir with
+              A.Bool ->
+                let op = fst op in
+                (* O operador not so possui uma alternativa de tipo *)
+                (T.ExpUn ((op, tdir), (dir, tdir)), tdir)
+            | t ->
+                let msg = "Um operador not nao pode ser usado com o tipo " ^ (nome_tipo t) in
+                failwith (msg_erro_pos (snd pos) msg))
+        | _ -> failwith "Operador invalido.")
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 
 
 (* Verifica as expressoes da linguagem. *)

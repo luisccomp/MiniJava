@@ -1,6 +1,10 @@
 programa: PUBLIC CLASS ID ACHAVE FCHAVE WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 172.
+=======
+## Ends in an error in state: 196.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## programa -> PUBLIC CLASS ID ACHAVE funcoes FCHAVE . EOF [ # ]
 ##
@@ -12,7 +16,11 @@ programa: PUBLIC CLASS ID ACHAVE FCHAVE WHILE
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC BOOLEAN ID APAR FPAR ACHAVE FCHAVE WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 174.
+=======
+## Ends in an error in state: 198.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## funcoes -> funcao . funcoes [ FCHAVE ]
 ##
@@ -60,9 +68,51 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE APAR WHI
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
+<<<<<<< HEAD
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN FPAR 
 ##
 ## Ends in an error in state: 121.
+=======
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE DIFER WHILE 
+##
+## Ends in an error in state: 50.
+##
+## expr -> DIFER . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## DIFER 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE DIV WHILE 
+##
+## Ends in an error in state: 49.
+##
+## expr -> DIV . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## DIV 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE ELOG WHILE 
+##
+## Ends in an error in state: 48.
+##
+## expr -> ELOG . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## ELOG 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN FPAR 
+##
+## Ends in an error in state: 145.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s . PTV expr PTV comando_s FPAR ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -73,15 +123,24 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 90, spurious reduction of production cmd_return -> RETURN 
 ## In state 137, spurious reduction of production comando_s -> cmd_return 
+=======
+## In state 114, spurious reduction of production cmd_return -> RETURN 
+## In state 161, spurious reduction of production comando_s -> cmd_return 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV LITSTRING PTV RETURN FPAR ACHAVE RETURN PTV BREAK 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 128.
+=======
+## Ends in an error in state: 152.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV expr PTV comando_s FPAR ACHAVE comandos . FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -92,15 +151,24 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 133, spurious reduction of production comandos -> 
 ## In state 134, spurious reduction of production comandos -> comando comandos 
+=======
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV LITSTRING PTV RETURN FPAR ACHAVE VOID 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 127.
+=======
+## Ends in an error in state: 151.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV expr PTV comando_s FPAR ACHAVE . comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -112,7 +180,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV LITSTRING PTV RETURN FPAR WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 126.
+=======
+## Ends in an error in state: 150.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV expr PTV comando_s FPAR . ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -124,7 +196,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV LITSTRING PTV RETURN PTV 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 125.
+=======
+## Ends in an error in state: 149.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV expr PTV comando_s . FPAR ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -135,15 +211,24 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 90, spurious reduction of production cmd_return -> RETURN 
 ## In state 137, spurious reduction of production comando_s -> cmd_return 
+=======
+## In state 114, spurious reduction of production cmd_return -> RETURN 
+## In state 161, spurious reduction of production comando_s -> cmd_return 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV LITSTRING PTV WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 124.
+=======
+## Ends in an error in state: 148.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV expr PTV . comando_s FPAR ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -155,7 +240,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 123.
+=======
+## Ends in an error in state: 147.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV expr . PTV comando_s FPAR ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ## expr -> expr . MAIS expr [ VEZES PTV OULOG NOT MOD MENOS MENORIGUAL MENOR MAIS MAIORIGUAL MAIOR IGUAL ELOG DIV DIFER ]
@@ -181,7 +270,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR APAR RETURN PTV WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 122.
+=======
+## Ends in an error in state: 146.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_for -> FOR APAR comando_s PTV . expr PTV comando_s FPAR ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -217,7 +310,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE FOR WHIL
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE ID APAR FPAR WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 120.
+=======
+## Ends in an error in state: 144.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## comando_s -> exp_fun . [ PTV FPAR ]
 ## expr -> exp_fun . [ VEZESIGUAL VEZES OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL ELOG DIVIGUAL DIV DIFER ATRIB ]
@@ -255,7 +352,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE ID WHILE
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR LITSTRING FPAR ACHAVE FCHAVE ELSE ACHAVE RETURN PTV BREAK 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 145.
+=======
+## Ends in an error in state: 169.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## parte_else -> ELSE ACHAVE comandos . FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -266,15 +367,24 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR 
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 133, spurious reduction of production comandos -> 
 ## In state 134, spurious reduction of production comandos -> comando comandos 
+=======
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR LITSTRING FPAR ACHAVE FCHAVE ELSE ACHAVE VOID 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 144.
+=======
+## Ends in an error in state: 168.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## parte_else -> ELSE ACHAVE . comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -286,7 +396,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR 
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR LITSTRING FPAR ACHAVE FCHAVE ELSE WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 143.
+=======
+## Ends in an error in state: 167.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## parte_else -> ELSE . ACHAVE comandos FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ## parte_else -> ELSE . cmd_if [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
@@ -299,7 +413,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR 
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR LITSTRING FPAR ACHAVE FCHAVE VOID 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 142.
+=======
+## Ends in an error in state: 166.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_if -> IF APAR expr FPAR ACHAVE comandos FCHAVE . parte_else [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -311,7 +429,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR 
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR LITSTRING FPAR ACHAVE RETURN PTV BREAK 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 141.
+=======
+## Ends in an error in state: 165.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_if -> IF APAR expr FPAR ACHAVE comandos . FCHAVE parte_else [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -322,8 +444,13 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF APAR 
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 133, spurious reduction of production comandos -> 
 ## In state 134, spurious reduction of production comandos -> comando comandos 
+=======
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
@@ -402,9 +529,27 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IF WHILE
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
+<<<<<<< HEAD
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING ATRIB LITSTRING WHILE 
 ##
 ## Ends in an error in state: 119.
+=======
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE IGUAL WHILE 
+##
+## Ends in an error in state: 45.
+##
+## expr -> IGUAL . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## IGUAL 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING ATRIB LITSTRING WHILE 
+##
+## Ends in an error in state: 143.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr ATRIB expr . [ PTV FPAR ]
 ## expr -> expr . MAIS expr [ VEZES PTV OULOG NOT MOD MENOS MENORIGUAL MENOR MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DIV DIFER ]
@@ -430,7 +575,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING ATRIB WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 114.
+=======
+## Ends in an error in state: 138.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr ATRIB . expr [ PTV FPAR ]
 ## comando_s -> expr ATRIB . READINT [ PTV FPAR ]
@@ -522,7 +671,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING DIVIGUAL LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 113.
+=======
+## Ends in an error in state: 137.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr DIVIGUAL expr . [ PTV FPAR ]
 ## expr -> expr . MAIS expr [ VEZES PTV OULOG NOT MOD MENOS MENORIGUAL MENOR MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DIV DIFER ]
@@ -548,7 +701,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING DIVIGUAL WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 112.
+=======
+## Ends in an error in state: 136.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr DIVIGUAL . expr [ PTV FPAR ]
 ##
@@ -636,7 +793,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MAIOR LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 64.
+=======
+## Ends in an error in state: 76.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## expr -> expr . MAIS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . MENOS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
@@ -674,7 +835,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MAIORIGUAL LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 62.
+=======
+## Ends in an error in state: 74.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## expr -> expr . MAIS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . MENOS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
@@ -712,7 +877,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MAIS LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 58.
+=======
+## Ends in an error in state: 70.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## expr -> expr . MAIS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr MAIS expr . [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
@@ -750,7 +919,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MAISIGUAL LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 111.
+=======
+## Ends in an error in state: 135.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr MAISIGUAL expr . [ PTV FPAR ]
 ## expr -> expr . MAIS expr [ VEZES PTV OULOG NOT MOD MENOS MENORIGUAL MENOR MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DIV DIFER ]
@@ -776,7 +949,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MAISIGUAL WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 110.
+=======
+## Ends in an error in state: 134.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr MAISIGUAL . expr [ PTV FPAR ]
 ##
@@ -864,7 +1041,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MENOS LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 52.
+=======
+## Ends in an error in state: 64.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## expr -> expr . MAIS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . MENOS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
@@ -902,7 +1083,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MENOSIGUAL LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 108.
+=======
+## Ends in an error in state: 132.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr MENOSIGUAL expr . [ PTV FPAR ]
 ## expr -> expr . MAIS expr [ VEZES PTV OULOG NOT MOD MENOS MENORIGUAL MENOR MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DIV DIFER ]
@@ -928,7 +1113,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING MENOSIGUAL WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 107.
+=======
+## Ends in an error in state: 131.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_atrib -> expr MENOSIGUAL . expr [ PTV FPAR ]
 ##
@@ -1054,7 +1243,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRING VEZES LITSTRING WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 43.
+=======
+## Ends in an error in state: 55.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## expr -> expr . MAIS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . MENOS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
@@ -1164,6 +1357,69 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE LITSTRIN
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
+<<<<<<< HEAD
+=======
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE MAIOR WHILE 
+##
+## Ends in an error in state: 39.
+##
+## expr -> MAIOR . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## MAIOR 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE MAIORIGUAL WHILE 
+##
+## Ends in an error in state: 38.
+##
+## expr -> MAIORIGUAL . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## MAIORIGUAL 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE MAIS WHILE 
+##
+## Ends in an error in state: 37.
+##
+## expr -> MAIS . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## MAIS 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE MENOR WHILE 
+##
+## Ends in an error in state: 36.
+##
+## expr -> MENOR . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## MENOR 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE MENORIGUAL WHILE 
+##
+## Ends in an error in state: 35.
+##
+## expr -> MENORIGUAL . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## MENORIGUAL 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE MENOS WHILE 
 ##
 ## Ends in an error in state: 31.
@@ -1180,6 +1436,7 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE NOT LITS
 ##
 ## Ends in an error in state: 78.
 ##
+<<<<<<< HEAD
 ## expr -> expr . MAIS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . MENOS expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . IGUAL expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
@@ -1195,6 +1452,9 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE NOT LITS
 ## expr -> expr . DIV expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> expr . VEZES expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
 ## expr -> NOT expr . [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+=======
+## expr -> MOD . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## The known suffix of the stack is as follows:
 ## NOT expr 
@@ -1214,6 +1474,21 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE NOT WHIL
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
+<<<<<<< HEAD
+=======
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE OULOG WHILE 
+##
+## Ends in an error in state: 31.
+##
+## expr -> OULOG . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## OULOG 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE PRINT APAR LITSTRING VIRG WHILE 
 ##
 ## Ends in an error in state: 73.
@@ -1279,7 +1554,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE PRINT WH
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN FPAR 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 130.
+=======
+## Ends in an error in state: 154.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## comando -> comando_s . PTV [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -1290,8 +1569,13 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN F
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 90, spurious reduction of production cmd_return -> RETURN 
 ## In state 137, spurious reduction of production comando_s -> cmd_return 
+=======
+## In state 114, spurious reduction of production cmd_return -> RETURN 
+## In state 161, spurious reduction of production comando_s -> cmd_return 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
@@ -1324,7 +1608,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN L
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN PTV BREAK 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 164.
+=======
+## Ends in an error in state: 188.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## funcao -> PUBLIC STATIC tipo ID APAR parametros FPAR ACHAVE list(declaracao) comandos . FCHAVE [ PUBLIC FCHAVE ]
 ##
@@ -1335,15 +1623,24 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN P
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 133, spurious reduction of production comandos -> 
 ## In state 134, spurious reduction of production comandos -> comando comandos 
+=======
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN PTV VOID 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 133.
+=======
+## Ends in an error in state: 157.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## comandos -> comando . comandos [ FCHAVE BREAK ]
 ##
@@ -1368,7 +1665,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE RETURN W
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE CASE LITSTRING DPTOS BREAK PTV WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 160.
+=======
+## Ends in an error in state: 184.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cases -> case . cases [ FCHAVE DEFAULT ]
 ##
@@ -1380,7 +1681,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE CASE LITSTRING DPTOS BREAK WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 150.
+=======
+## Ends in an error in state: 174.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## case -> CASE expr DPTOS comandos BREAK . PTV [ FCHAVE DEFAULT CASE ]
 ##
@@ -1392,7 +1697,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE CASE LITSTRING DPTOS RETURN PTV FCHAVE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 149.
+=======
+## Ends in an error in state: 173.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## case -> CASE expr DPTOS comandos . BREAK PTV [ FCHAVE DEFAULT CASE ]
 ##
@@ -1403,8 +1712,13 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 133, spurious reduction of production comandos -> 
 ## In state 134, spurious reduction of production comandos -> comando comandos 
+=======
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
@@ -1461,7 +1775,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE DEFAULT DPTOS BREAK PTV WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 158.
+=======
+## Ends in an error in state: 182.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_switch -> SWITCH APAR expr FPAR ACHAVE cases default . FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -1473,7 +1791,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE DEFAULT DPTOS BREAK WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 156.
+=======
+## Ends in an error in state: 180.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## default -> DEFAULT DPTOS comandos BREAK . PTV [ FCHAVE ]
 ##
@@ -1483,9 +1805,34 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
+<<<<<<< HEAD
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE DEFAULT DPTOS VOID 
 ##
 ## Ends in an error in state: 154.
+=======
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE DEFAULT DPTOS RETURN PTV FCHAVE 
+##
+## Ends in an error in state: 179.
+##
+## default -> DEFAULT DPTOS comandos . BREAK PTV [ FCHAVE ]
+##
+## The known suffix of the stack is as follows:
+## DEFAULT DPTOS comandos 
+##
+## WARNING: This example involves spurious reductions.
+## This implies that, although the LR(1) items shown above provide an
+## accurate view of the past (what has been recognized so far), they
+## may provide an INCOMPLETE view of the future (what was expected next).
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE DEFAULT DPTOS VOID 
+##
+## Ends in an error in state: 178.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## default -> DEFAULT DPTOS . comandos BREAK PTV [ FCHAVE ]
 ## default -> DEFAULT DPTOS . comandos [ FCHAVE ]
@@ -1498,7 +1845,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH A
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH APAR LITSTRING FPAR ACHAVE DEFAULT WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 153.
+=======
+## Ends in an error in state: 177.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## default -> DEFAULT . DPTOS comandos BREAK PTV [ FCHAVE ]
 ## default -> DEFAULT . DPTOS comandos [ FCHAVE ]
@@ -1583,6 +1934,21 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE SWITCH W
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
 
+<<<<<<< HEAD
+=======
+programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE VEZES WHILE 
+##
+## Ends in an error in state: 30.
+##
+## expr -> VEZES . expr [ VIRG VEZESIGUAL VEZES PTV OULOG NOT MOD MENOSMENOS MENOSIGUAL MENOS MENORIGUAL MENOR MAISMAIS MAISIGUAL MAIS MAIORIGUAL MAIOR IGUAL FPAR ELOG DPTOS DIVIGUAL DIV DIFER ATRIB ]
+##
+## The known suffix of the stack is as follows:
+## VEZES 
+##
+
+<YOUR SYNTAX ERROR MESSAGE HERE>
+
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE VIRG 
 ##
 ## Ends in an error in state: 20.
@@ -1597,7 +1963,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE VIRG
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE VOID ID PTV VIRG 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 166.
+=======
+## Ends in an error in state: 190.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## list(declaracao) -> declaracao . list(declaracao) [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE APAR ]
 ##
@@ -1646,7 +2016,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE VOID WHI
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE WHILE APAR LITSTRING FPAR ACHAVE RETURN PTV BREAK 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 162.
+=======
+## Ends in an error in state: 186.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## cmd_while -> WHILE APAR expr FPAR ACHAVE comandos . FCHAVE [ WHILE SWITCH RETURN PRINT NOT MENOS LITSTRING LITINT LITFLOAT LITCHAR LITBOOL IF ID FOR FCHAVE BREAK APAR ]
 ##
@@ -1657,8 +2031,13 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR ACHAVE WHILE AP
 ## This implies that, although the LR(1) items shown above provide an
 ## accurate view of the past (what has been recognized so far), they
 ## may provide an INCOMPLETE view of the future (what was expected next).
+<<<<<<< HEAD
 ## In state 133, spurious reduction of production comandos -> 
 ## In state 134, spurious reduction of production comandos -> comando comandos 
+=======
+## In state 157, spurious reduction of production comandos -> 
+## In state 158, spurious reduction of production comandos -> comando comandos 
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 
 <YOUR SYNTAX ERROR MESSAGE HERE>
@@ -1751,7 +2130,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR FPAR WHILE
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR VOID ID VIRG WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 169.
+=======
+## Ends in an error in state: 193.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## parametros -> parametro VIRG . parametros [ FPAR ]
 ##
@@ -1763,7 +2146,11 @@ programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR VOID ID VIRG WHILE
 
 programa: PUBLIC CLASS ID ACHAVE PUBLIC STATIC VOID ID APAR VOID ID WHILE 
 ##
+<<<<<<< HEAD
 ## Ends in an error in state: 168.
+=======
+## Ends in an error in state: 192.
+>>>>>>> 37632df0e16531dc80ecaea8398d764bfec8f142
 ##
 ## parametros -> parametro . [ FPAR ]
 ## parametros -> parametro . VIRG parametros [ FPAR ]
