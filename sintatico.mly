@@ -148,6 +148,7 @@ case : CASE e=expr DPTOS cs=comandos BREAK PTV { Case (e, cs) }
 
 default:                                     { None }
        | DEFAULT DPTOS cs=comandos BREAK PTV { Some (Default cs) }
+       | DEFAULT DPTOS cs=comandos           { Some (Default cs) }
        ;
 
 parte_else :                                { None }
@@ -177,8 +178,8 @@ cmd_atrib : ee=expr ATRIB ed=expr          { CmdAtrib (ee, ed) }
           | ee=expr pos=MENOSIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ed)) }
           | ee=expr pos=VEZESIGUAL ed=expr { CmdAtrib (ee, ExpOp ((Mult, pos), ee, ed)) }
           | ee=expr pos=DIVIGUAL ed=expr   { CmdAtrib (ee, ExpOp ((Div, pos), ee, ed)) }
-          (*| ee=expr pos=MAISMAIS           { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ExpInt 1)) }*)
-          (*| ee=expr pos=MENOSMENOS         { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ExpInt 1)) }*)
+          | ee=expr pos=MAISMAIS           { CmdAtrib (ee, ExpOp ((Soma, pos), ee, ExpInt (1, pos))) }
+          | ee=expr pos=MENOSMENOS         { CmdAtrib (ee, ExpOp ((Sub, pos), ee, ExpInt (1, pos))) }
           ;
 
 (* Comando de retorno. *)
@@ -187,16 +188,18 @@ cmd_return : RETURN e=expr { CmdReturn (Some e) }
            ;
 
 (* Expressões da mini linguagem. *)
-expr : APAR e=expr FPAR             { e }
-     | v=variavel                   { ExpVar v }
-     | i=LITINT                     { ExpInt i }
-     | f=LITFLOAT                   { ExpFloat f }
-     | b=LITBOOL                    { ExpBool b }
-     | s=LITSTRING                  { ExpString s }
-     | c=LITCHAR                    { ExpChar c }
-     | ee=expr op=oper ed=expr      { ExpOp (op, ee, ed) }
-     | op=oper ed=expr %prec UMENOS { ExpUn (op, ed) }
-     | ef=exp_fun                   { ef }
+expr : APAR e=expr FPAR              { e }
+     | v=variavel                    { ExpVar v }
+     | i=LITINT                      { ExpInt i }
+     | f=LITFLOAT                    { ExpFloat f }
+     | b=LITBOOL                     { ExpBool b }
+     | s=LITSTRING                   { ExpString s }
+     | c=LITCHAR                     { ExpChar c }
+     | ee=expr op=oper ed=expr       { ExpOp (op, ee, ed) }
+   (*| op=oper ed=expr %prec UMENOS { ExpUn (op, ed) }*)
+     | pos=MENOS e=expr %prec UMENOS { ExpUn ((UMenos, pos), e) }
+     | pos=NOT e=expr                { ExpUn ((Not, pos), e) }
+     | ef=exp_fun                    { ef }
      ;
 
 (* Uma chamada de função. *)

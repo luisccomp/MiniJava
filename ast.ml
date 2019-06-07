@@ -74,6 +74,7 @@ and oper = Soma
          | Igual
          | Difer
          | Not
+         | UMenos
 
 (* Tipo de variaveis da mini linguagem. *)
 and 'expr variavel = VarSimples of ident pos

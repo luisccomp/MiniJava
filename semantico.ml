@@ -159,6 +159,20 @@ let rec infere_exp amb exp =
                     | Relacional -> verifica_relacional ()
                     | Logico -> verifica_logico ()) in
         (T.ExpOp ((op, tinf), (esq, tesq), (dir, tdir)), tinf)
+    | S.ExpUn (op, dir) ->
+        let (dir, tdir) = infere_exp amb dir in
+        (* Qual é o operador que está sendo usado na operação unária... *)
+       (match (fst op) with
+          A.UMenos ->
+           (match tdir with
+              A.Int
+            | A.Float ->
+               (T.ExpUn ((A.UMenos, tdir), (dir, tdir)), tdir)
+            | _ -> failwith "Operador invalido.")
+        | A.Not -> 
+           (match tdir with
+              A.Bool ->
+               (T.ExpUn ((A.Not, tdir), (dir, tdir)), tdir)))
     | S.ExpFun (nome, args) ->
         (* Verifica os tipos dos parametros. *)
         let rec verifica_parametros args ps fs =
@@ -196,6 +210,7 @@ let rec infere_exp amb exp =
         with Not_found ->
             let msg = id ^ " eh uma variavel e nao uma funcao!" in
             failwith (msg_erro nome msg)
+        
 
 
 (* Verifica as expressoes da linguagem. *)
